@@ -125,11 +125,24 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			return;
 		}
 		
-		System.out.println(node + " ");
+		Stack<BSTNode> nodeStack = new Stack<BSTNode>();
+		nodeStack.push(root);
 		
-		preOrderRecurse(node.leftChild);
-		
-		preOrderRecurse(node.rightChild);
+		while (nodeStack.empty() == false) {
+			 
+            // Pop the top item from stack and print it
+            BSTNode mynode = nodeStack.peek();
+            System.out.print(mynode.data + " ");
+            nodeStack.pop();
+ 
+            // Push right and left children of the popped node to stack
+            if (mynode.rightChild != null) {
+                nodeStack.push(mynode.rightChild);
+            }
+            if (mynode.leftChild != null) {
+                nodeStack.push(mynode.leftChild);
+            }
+        }
 		
 	}
 	
